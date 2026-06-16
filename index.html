@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopWave — Modern Shopping</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+       ============================================= -->
+  <nav id="navbar">
+    <a href="#" class="logo">
+      <span class="logo-dot"></span>
+      ShopWave
+    </a>
+    <ul class="nav-links">
+      <li><a href="#categories" class="active">Shop</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#deals">Deals</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search products..." id="searchInput" oninput="filterSearch()">
+      </div>
+      <div class="btn-icon" onclick="toggleWishlist()" title="Wishlist">
+        ♡
+        <span class="badge" id="wishlistBadge" style="display:none">0</span>
+      </div>
+      <div class="btn-icon" onclick="openCart()" title="Cart">
+        🛍
+        <span class="badge" id="cartBadge" style="display:none">0</span>
+      </div>
+      <a href="signup.html" class="btn-primary" style="padding:8px 18px;font-size:13px;text-decoration:none">Sign Up</a>
+      <a href="login.html" class="btn-outline" style="padding:8px 18px;font-size:13px;text-decoration:none">Login</a>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        New Collection 2025
+      </div>
+      <h1>Shop the <em>Future,</em><br>Today.</h1>
+      <p>Discover curated products across fashion, tech, lifestyle and more — all handpicked for quality and style.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-primary">Explore Now →</a>
+        <a href="#deals" class="btn-outline">🔥 View Deals</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num text-accent">12K+</div>
+          <div class="stat-label">Products</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num text-accent">98%</div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num text-accent">Free</div>
+          <div class="stat-label">Shipping over ₹999</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="hero-card-back"></div>
+        <div class="hero-card-mid"></div>
+        <div class="hero-card hero-card-front">
+          <div class="hero-card-img"><span>👟</span></div>
+          <div class="hero-card-body">
+            <div class="hero-card-tag">Footwear</div>
+            <div class="hero-card-name">AirMax Pro Elite</div>
+            <div>
+              <span class="hero-card-price">₹4,299</span>
+              <span class="hero-card-old">₹6,999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       MARQUEE BANNER
+       ============================================= -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">🚚 Free Delivery Over ₹999 <span>✦</span></span>
+      <span class="marquee-item">🔁 Easy 30-Day Returns <span>✦</span></span>
+      <span class="marquee-item">🔒 Secure Checkout <span>✦</span></span>
+      <span class="marquee-item">⚡ Same Day Dispatch <span>✦</span></span>
+      <span class="marquee-item">💳 EMI Available <span>✦</span></span>
+      <span class="marquee-item">🎁 Gift Wrapping Available <span>✦</span></span>
+      <span class="marquee-item">🌟 Top Rated Brands <span>✦</span></span>
+      <span class="marquee-item">🚚 Free Delivery Over ₹999 <span>✦</span></span>
+      <span class="marquee-item">🔁 Easy 30-Day Returns <span>✦</span></span>
+      <span class="marquee-item">🔒 Secure Checkout <span>✦</span></span>
+      <span class="marquee-item">⚡ Same Day Dispatch <span>✦</span></span>
+      <span class="marquee-item">💳 EMI Available <span>✦</span></span>
+      <span class="marquee-item">🎁 Gift Wrapping Available <span>✦</span></span>
+      <span class="marquee-item">🌟 Top Rated Brands <span>✦</span></span>
+    </div>
+  </div>
+
+  <!-- =============================================
+       CATEGORIES
+       ============================================= -->
+  <section id="categories">
+    <div class="section-header">
+      <div class="section-eyebrow">Browse by Category</div>
+      <h2 class="section-title">Shop by <em>Collection</em></h2>
+      <p class="section-sub">From everyday essentials to luxury picks — find what you love.</p>
+    </div>
+    <div class="categories-grid">
+      <a class="cat-card" href="#products" onclick="filterByCategory('Electronics')">
+        <span class="cat-icon">📱</span>
+        <div class="cat-name">Electronics</div>
+        <div class="cat-count">240+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Fashion')">
+        <span class="cat-icon">👗</span>
+        <div class="cat-name">Fashion</div>
+        <div class="cat-count">180+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Footwear')">
+        <span class="cat-icon">👟</span>
+        <div class="cat-name">Footwear</div>
+        <div class="cat-count">95+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Beauty')">
+        <span class="cat-icon">💄</span>
+        <div class="cat-name">Beauty</div>
+        <div class="cat-count">130+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Home')">
+        <span class="cat-icon">🏠</span>
+        <div class="cat-name">Home & Living</div>
+        <div class="cat-count">210+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Sports')">
+        <span class="cat-icon">⚽</span>
+        <div class="cat-name">Sports</div>
+        <div class="cat-count">160+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Books')">
+        <span class="cat-icon">📚</span>
+        <div class="cat-name">Books</div>
+        <div class="cat-count">450+ items</div>
+      </a>
+      <a class="cat-card" href="#products" onclick="filterByCategory('Toys')">
+        <span class="cat-icon">🧸</span>
+        <div class="cat-name">Toys & Games</div>
+        <div class="cat-count">70+ items</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PRODUCTS
+       ============================================= -->
+  <section id="products">
+    <div class="section-header" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
+      <div>
+        <div class="section-eyebrow">Featured</div>
+        <h2 class="section-title">Top <em>Picks</em> For You</h2>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span style="font-size:13px;color:var(--muted);">Sort:</span>
+        <select id="sortSelect" onchange="sortProducts()"
+          style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:8px;font-size:13px;outline:none;cursor:pointer">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('Electronics',this)">Electronics</button>
+      <button class="filter-btn" onclick="filterProducts('Fashion',this)">Fashion</button>
+      <button class="filter-btn" onclick="filterProducts('Footwear',this)">Footwear</button>
+      <button class="filter-btn" onclick="filterProducts('Beauty',this)">Beauty</button>
+      <button class="filter-btn" onclick="filterProducts('Home',this)">Home</button>
+      <button class="filter-btn" onclick="filterProducts('Sports',this)">Sports</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- =============================================
+       FLASH SALE BANNER
+       ============================================= -->
+  <div class="banner-section" id="deals">
+    <div class="banner">
+      <div class="banner-glow"></div>
+      <div class="banner-content">
+        <div class="section-eyebrow" style="margin-bottom:16px">Flash Sale</div>
+        <h2>Up to <em>70% Off</em><br>Today Only!</h2>
+        <p>Grab the hottest deals before they're gone. Limited stock available.</p>
+        <div class="timer">
+          <div class="timer-block">
+            <span class="timer-num" id="t-hours">08</span>
+            <div class="timer-label">Hours</div>
+          </div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block">
+            <span class="timer-num" id="t-mins">45</span>
+            <div class="timer-label">Mins</div>
+          </div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block">
+            <span class="timer-num" id="t-secs">30</span>
+            <div class="timer-label">Secs</div>
+          </div>
+        </div>
+        <button class="btn-primary"
+          onclick="filterProducts('All', document.querySelector('.filter-btn')); document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+          Shop the Sale →
+        </button>
+      </div>
+      <div class="banner-emoji">🛒</div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       TESTIMONIALS
+       ============================================= -->
+  <section id="about">
+    <div class="section-header">
+      <div class="section-eyebrow">Reviews</div>
+      <h2 class="section-title">What Our <em>Customers</em> Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Absolutely love the quality of products here. The AirMax sneakers I ordered arrived in 2 days and look even better in person. Will definitely shop again!</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:rgba(255,107,53,0.15);color:var(--accent)">P</div>
+          <div>
+            <div class="t-name">Priya Sharma</div>
+            <div class="t-role">⭐⭐⭐⭐⭐ · Verified Buyer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Best online shopping experience I've had. The interface is clean, checkout is smooth and customer support resolved my query within minutes.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:rgba(34,197,94,0.15);color:var(--green)">R</div>
+          <div>
+            <div class="t-name">Rahul Mehta</div>
+            <div class="t-role">⭐⭐⭐⭐⭐ · Verified Buyer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">The return process was seamless — no questions asked, full refund in 3 days. Rare to find a store this honest. ShopWave has a loyal customer in me.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:rgba(59,130,246,0.15);color:#60a5fa">A</div>
+          <div>
+            <div class="t-name">Ananya Patel</div>
+            <div class="t-role">⭐⭐⭐⭐⭐ · Verified Buyer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       NEWSLETTER
+       ============================================= -->
+  <div class="newsletter-section">
+    <div class="newsletter">
+      <div style="font-size:44px;margin-bottom:16px">💌</div>
+      <h2>Get Exclusive <span style="color:var(--accent)">Deals</span></h2>
+      <p>Subscribe and be the first to know about sales, new arrivals, and style inspiration.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="your@email.com" id="emailInput">
+        <button class="btn-primary" onclick="subscribeNewsletter()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="font-size:20px">
+          <span class="logo-dot"></span> ShopWave
+        </a>
+        <p>Your one-stop destination for curated lifestyle products, delivered with care and speed.</p>
+        <div class="social-links">
+          <div class="social-btn">𝕏</div>
+          <div class="social-btn">f</div>
+          <div class="social-btn">in</div>
+          <div class="social-btn">▶</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">Sale</a></li>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Size Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 ShopWave. All rights reserved.</div>
+      <div class="footer-payments">
+        <span class="payment-badge">VISA</span>
+        <span class="payment-badge">MC</span>
+        <span class="payment-badge">UPI</span>
+        <span class="payment-badge">EMI</span>
+        <span class="payment-badge">COD</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       CART SLIDE PANEL
+       ============================================= -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Your Cart 🛍</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cartBody" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="cart-total">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-amount" id="cartTotal">₹0</span>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="checkout()">Checkout →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       PRODUCT QUICK-VIEW MODAL
+       ============================================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Product Details</h3>
+        <button class="cart-close" onclick="closeModal(null,true)">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-img" id="modalImg"></div>
+        <div class="modal-info">
+          <div class="modal-cat"  id="modalCat"></div>
+          <div class="modal-name" id="modalName"></div>
+          <div class="modal-rating">
+            <span class="stars"  id="modalStars"></span>
+            <span id="modalRating" style="font-size:13px;color:var(--muted)"></span>
+          </div>
+          <div>
+            <span class="modal-price"     id="modalPrice"></span>
+            <span class="modal-price-old" id="modalOld"></span>
+          </div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <hr class="modal-divider">
+          <div class="modal-label">Select Size</div>
+          <div class="size-grid" id="sizeGrid"></div>
+          <div class="modal-actions">
+            <button class="btn-primary"  style="flex:1;justify-content:center" id="modalAddBtn">Add to Cart</button>
+            <button class="btn-outline"  style="padding:14px 18px"             id="modalWishBtn">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       TOAST CONTAINER
+       ============================================= -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- =============================================
+       SCROLL TO TOP BUTTON
+       ============================================= -->
+  <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
