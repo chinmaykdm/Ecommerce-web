@@ -7,19 +7,70 @@ from database import SessionLocal, engine
 from models import Base, Product as ProductModel, User
 from jose import jwt
 from datetime import datetime, timedelta
+import os
+from fastapi import Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+
+
+app = FastAPI()
+
+
+templates = Jinja2Templates(directory="templates")
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+# ----------------------------
+# HTML Pages
+# ----------------------------
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html"
+    )
+@app.get("/login-page", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse(
+        "login.html",
+        {"request": request}
+    )
+
+
+@app.get("/signup-page", response_class=HTMLResponse)
+async def signup_page(request: Request):
+    return templates.TemplateResponse(
+        "signup.html",
+        {"request": request}
+    )
+
+
+@app.get("/shop", response_class=HTMLResponse)
+async def shop_page(request: Request):
+    return templates.TemplateResponse(
+        "shopwave.html",
+        {"request": request}
+    )
+
 
 # Create tables
 Base.metadata.create_all(bind=engine)
-
-app = FastAPI()
 
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
-SECRET_KEY = "mysecretkey123"
+
+SECRET_KEY = os.getenv("SECRET_KEY", "mysecretkey123")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+
+# ----------------------------
+# Database Dependency
+# ----------------------------
 
 # -----------------------------
 # Database Dependency
@@ -84,14 +135,12 @@ class LoginUser(BaseModel):
 # -----------------------------
 # Home Route
 # -----------------------------
-@app.get("/")
-def home():
-    return {"message": "Database Connected"}
-@app.get("/users")
-def get_users(db: Session = Depends(get_db)):
-    return db.query(User).all()
-
-
+# -----------------------------
+# Home Route
+# -----------------------------
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    return "<h1>Home Page Works</h1>"
 # -----------------------------
 # Get All Products
 # -----------------------------
