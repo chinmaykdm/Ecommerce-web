@@ -24,36 +24,33 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # ----------------------------
 # HTML Pages
-# ----------------------------
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse(
         request=request,
         name="index.html"
     )
-@app.get("/login-page", response_class=HTMLResponse)
-async def login_page(request: Request):
-    return templates.TemplateResponse(
-        "login.html",
-        {"request": request}
-    )
-
 
 @app.get("/signup-page", response_class=HTMLResponse)
 async def signup_page(request: Request):
     return templates.TemplateResponse(
-        "signup.html",
-        {"request": request}
+        request=request,
+        name="signup.html"
     )
 
+@app.get("/login-page", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="login.html"
+    )
 
 @app.get("/shop", response_class=HTMLResponse)
 async def shop_page(request: Request):
     return templates.TemplateResponse(
-        "shopwave.html",
-        {"request": request}
+        request=request,
+        name="shopwave.html"
     )
-
 
 # Create tables
 Base.metadata.create_all(bind=engine)
